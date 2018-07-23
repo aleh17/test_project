@@ -131,31 +131,31 @@ INSERT INTO `vacations` (`vacation_id`, `employee_id`, `from_date`, `to_date`, `
 -- Indexes for table `departments`
 --
 ALTER TABLE `departments`
-  ADD PRIMARY KEY (`department_id`);
+  ADD AUTO_INCREMENT PRIMARY KEY (`department_id`);
 
 --
 -- Indexes for table `employees`
 --
 ALTER TABLE `employees`
-  ADD PRIMARY KEY (`employee_id`);
+  ADD AUTO_INCREMENT PRIMARY KEY (`employee_id`);
 
 --
 -- Indexes for table `salaries`
 --
 ALTER TABLE `salaries`
-  ADD PRIMARY KEY (`salary_id`);
+  ADD AUTO_INCREMENT PRIMARY KEY (`salary_id`);
 
 --
 -- Indexes for table `titles`
 --
 ALTER TABLE `titles`
-  ADD PRIMARY KEY (`title_id`);
+  ADD AUTO_INCREMENT PRIMARY KEY (`title_id`);
 
 --
 -- Indexes for table `vacations`
 --
 ALTER TABLE `vacations`
-  ADD PRIMARY KEY (`vacation_id`);
+  ADD AUTO_INCREMENT PRIMARY KEY (`vacation_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

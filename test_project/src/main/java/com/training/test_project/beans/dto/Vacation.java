@@ -1,34 +1,31 @@
-package com.training.test_project.beans;
+package com.training.test_project.beans.dto;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.training.test_project.beans.VacationStatus;
+import com.training.test_project.beans.entity.VacationEntity;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
-@Entity
-@Table(name = "vacations")
-public class Vacation implements Serializable {
+public class Vacation {
 
-    @Id
-    @Column(name = "vacation_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JsonManagedReference
-    @JoinColumn(name="employee_id", nullable=false)
     private Employee employee;
 
     private Date fromDate;
 
     private Date toDate;
 
-    @Enumerated(EnumType.STRING)
     private VacationStatus vacationStatus;
 
-
     public Vacation() {
+    }
+
+    public Vacation(VacationEntity vacation) {
+        this.id = vacation.getId();
+        this.employee = new Employee(vacation.getEmployee().getId(), vacation.getEmployee().getFirstName(), vacation.getEmployee().getLastName());
+        this.fromDate = vacation.getFromDate();
+        this.toDate = vacation.getToDate();
+        this.vacationStatus = vacation.getVacationStatus();
     }
 
     public Long getId() {

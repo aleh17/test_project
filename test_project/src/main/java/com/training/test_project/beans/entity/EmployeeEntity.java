@@ -1,59 +1,50 @@
-package com.training.test_project.beans;
+package com.training.test_project.beans.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.training.test_project.beans.Role;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "employees")
-public class Employee {
+public class EmployeeEntity {
     @Id
     @Column(name = "employee_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     private String firstName;
 
-    @NotBlank
     private String lastName;
 
-    @NotBlank
     private Date birthDate;
 
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @NotBlank
     @ManyToOne
     @JoinColumn(name="department_id", nullable=false)
-    private Department department;
+    private DepartmentEntity department;
 
-    @NotBlank
     @ManyToOne
     @JoinColumn(name="salary_id", nullable=false)
-    private Salary salary;
+    private SalaryEntity salary;
 
-    @NotBlank
     @ManyToOne
     @JoinColumn(name="title_id", nullable=false)
-    private Title title;
+    private TitleEntity title;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "employee")
-    private List<Vacation> vacations;
+    private List<VacationEntity> vacations;
 
-    @NotBlank
     private String login;
 
-    @NotBlank
     private String password;
 
 
-    public Employee() {
+    public EmployeeEntity() {
     }
 
 
@@ -105,35 +96,35 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public Department getDepartment() {
+    public DepartmentEntity getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(DepartmentEntity department) {
         this.department = department;
     }
 
-    public Salary getSalary() {
+    public SalaryEntity getSalary() {
         return salary;
     }
 
-    public void setSalary(Salary salary) {
+    public void setSalary(SalaryEntity salary) {
         this.salary = salary;
     }
 
-    public Title getTitle() {
+    public TitleEntity getTitle() {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(TitleEntity title) {
         this.title = title;
     }
 
-    public List<Vacation> getVacations() {
+    public List<VacationEntity> getVacations() {
         return vacations;
     }
 
-    public void setVacations(List<Vacation> vacations) {
+    public void setVacations(List<VacationEntity> vacations) {
         this.vacations = vacations;
     }
 
@@ -143,5 +134,19 @@ public class Employee {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmployeeEntity that = (EmployeeEntity) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id);
     }
 }
