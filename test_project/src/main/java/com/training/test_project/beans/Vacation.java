@@ -1,30 +1,29 @@
 package com.training.test_project.beans;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.sql.Date;
 
 @Entity
 @Table(name = "vacations")
-public class Vacation {
+public class Vacation implements Serializable {
 
     @Id
     @Column(name = "vacation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
     @ManyToOne
+    @JsonManagedReference
     @JoinColumn(name="employee_id", nullable=false)
     private Employee employee;
 
-    @NotBlank
     private Date fromDate;
 
-    @NotBlank
     private Date toDate;
 
-    @NotBlank
     @Enumerated(EnumType.STRING)
     private VacationStatus vacationStatus;
 

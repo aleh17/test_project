@@ -1,5 +1,7 @@
 package com.training.test_project.beans;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
@@ -40,7 +42,7 @@ public class Employee {
     @JoinColumn(name="title_id", nullable=false)
     private Title title;
 
-    @NotBlank
+    @JsonBackReference
     @OneToMany(mappedBy = "employee")
     private List<Vacation> vacations;
 
