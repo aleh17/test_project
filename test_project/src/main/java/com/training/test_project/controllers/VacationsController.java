@@ -31,14 +31,14 @@ public class VacationsController {
         );
     }
 
-    @PutMapping("/approve/{id}")
+    @PostMapping("/approve/{id}")
     public VacationEntity approveVacation(@PathVariable(value = "id") Long vacationId) {
         VacationEntity storedVacation = vacationsRepository.findById(vacationId).orElseThrow(() -> new ResourceItemNotFoundException("Vacation", "id", vacationId));
         storedVacation.setVacationStatus(VacationStatus.APPROVED);
         return vacationsRepository.save(storedVacation);
     }
 
-    @PutMapping("/decline/{id}")
+    @PostMapping("/decline/{id}")
     public VacationEntity declineVacation(@PathVariable(value = "id") Long vacationId) {
         VacationEntity storedVacation = vacationsRepository.findById(vacationId).orElseThrow(() -> new ResourceItemNotFoundException("Vacation", "id", vacationId));
         storedVacation.setVacationStatus(VacationStatus.DECLINED);

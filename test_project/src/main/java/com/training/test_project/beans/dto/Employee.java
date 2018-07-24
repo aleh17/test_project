@@ -5,7 +5,7 @@ import com.training.test_project.beans.entity.EmployeeEntity;
 
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Employee {

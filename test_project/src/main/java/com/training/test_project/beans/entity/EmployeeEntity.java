@@ -47,6 +47,19 @@ public class EmployeeEntity {
     public EmployeeEntity() {
     }
 
+    public EmployeeEntity(Long id, String firstName, String lastName, Date birthDate, Role role, DepartmentEntity department, SalaryEntity salary, TitleEntity title, List<VacationEntity> vacations, String login, String password) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.role = role;
+        this.department = department;
+        this.salary = salary;
+        this.title = title;
+        this.vacations = vacations;
+        this.login = login;
+        this.password = password;
+    }
 
     public Long getId() {
         return id;
