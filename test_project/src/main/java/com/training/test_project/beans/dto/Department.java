@@ -21,7 +21,7 @@ public class Department {
     public Department(DepartmentEntity entity) {
         this.id = entity.getId();
         this.departmentName = entity.getDepartmentName();
-        entity.getEmployees().forEach(emp -> addEmployee(new Employee(emp)));
+        //entity.getEmployees().forEach(emp -> addEmployee(new Employee(emp)));
     }
 
     public Department(Long id, @NotBlank String departmentName) {

@@ -1,7 +1,6 @@
 package com.training.test_project.beans.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,6 +24,11 @@ public class DepartmentEntity {
     public DepartmentEntity(Long id, List<EmployeeEntity> employees, String departmentName) {
         this.id = id;
         this.employees = employees;
+        this.departmentName = departmentName;
+    }
+
+    public DepartmentEntity(Long id, String departmentName) {
+        this.id = id;
         this.departmentName = departmentName;
     }
 

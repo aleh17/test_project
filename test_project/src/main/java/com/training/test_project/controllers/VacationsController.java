@@ -4,7 +4,6 @@ import com.training.test_project.beans.dto.Vacation;
 import com.training.test_project.beans.entity.EmployeeEntity;
 import com.training.test_project.beans.entity.VacationEntity;
 import com.training.test_project.beans.VacationStatus;
-import com.training.test_project.exceptions.ResourceItemNotFoundException;
 import com.training.test_project.repository.EmployeesRepository;
 import com.training.test_project.repository.VacationsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +31,22 @@ public class VacationsController {
     }
 
     @PostMapping("/approve/{id}")
-    public VacationEntity approveVacation(@PathVariable(value = "id") Long vacationId) {
-        VacationEntity storedVacation = vacationsRepository.findById(vacationId).orElseThrow(() -> new ResourceItemNotFoundException("Vacation", "id", vacationId));
+    public Vacation approveVacation(@PathVariable(value = "id") Long vacationId) {
+        VacationEntity storedVacation = vacationsRepository.getOne(vacationId);
         storedVacation.setVacationStatus(VacationStatus.APPROVED);
-        return vacationsRepository.save(storedVacation);
+
+        return new Vacation(
+                vacationsRepository.save(storedVacation)
+        );
     }
 
     @PostMapping("/decline/{id}")
-    public VacationEntity declineVacation(@PathVariable(value = "id") Long vacationId) {
-        VacationEntity storedVacation = vacationsRepository.findById(vacationId).orElseThrow(() -> new ResourceItemNotFoundException("Vacation", "id", vacationId));
+    public Vacation declineVacation(@PathVariable(value = "id") Long vacationId) {
+        VacationEntity storedVacation = vacationsRepository.getOne(vacationId);
         storedVacation.setVacationStatus(VacationStatus.DECLINED);
-        return vacationsRepository.save(storedVacation);
+
+        return new Vacation(
+                vacationsRepository.save(storedVacation)
+        );
     }
 }
