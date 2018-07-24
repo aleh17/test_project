@@ -22,6 +22,12 @@ public class DepartmentEntity {
     public DepartmentEntity() {
     }
 
+    public DepartmentEntity(Long id, List<EmployeeEntity> employees, String departmentName) {
+        this.id = id;
+        this.employees = employees;
+        this.departmentName = departmentName;
+    }
+
     public Long getId() {
         return id;
     }

@@ -3,6 +3,7 @@ package com.training.test_project.beans.dto;
 import com.training.test_project.beans.Role;
 import com.training.test_project.beans.entity.EmployeeEntity;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
@@ -28,10 +29,10 @@ public class Employee {
     private Department department;
 
     @NotNull
-    private Salary salary;
+    private BigDecimal salary;
 
     @NotNull
-    private Title title;
+    private String title;
 
     private List<Vacation> vacations = new ArrayList<>();
 
@@ -53,8 +54,8 @@ public class Employee {
         this.login = employee.getLogin();
         this.password = employee.getPassword();
         this.department = new Department(employee.getDepartment().getId(), employee.getDepartment().getDepartmentName());
-        this.salary = new Salary(employee.getSalary().getId(), employee.getSalary().getSalary());
-        this.title = new Title(employee.getTitle().getId(), employee.getTitle().getTitleName());
+        this.salary = employee.getSalary();
+        this.title = employee.getTitle();
         employee.getVacations().forEach(vac -> addVacation(new Vacation(vac)));
     }
 
@@ -112,19 +113,19 @@ public class Employee {
         this.department = department;
     }
 
-    public Salary getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(Salary salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
-    public Title getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

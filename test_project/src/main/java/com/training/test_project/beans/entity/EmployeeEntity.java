@@ -2,6 +2,7 @@ package com.training.test_project.beans.entity;
 
 import com.training.test_project.beans.Role;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import javax.persistence.*;
 import java.util.List;
@@ -28,13 +29,9 @@ public class EmployeeEntity {
     @JoinColumn(name="department_id", nullable=false)
     private DepartmentEntity department;
 
-    @ManyToOne
-    @JoinColumn(name="salary_id", nullable=false)
-    private SalaryEntity salary;
+    private BigDecimal salary;
 
-    @ManyToOne
-    @JoinColumn(name="title_id", nullable=false)
-    private TitleEntity title;
+    private String title;
 
     @OneToMany(mappedBy = "employee")
     private List<VacationEntity> vacations;
@@ -47,7 +44,7 @@ public class EmployeeEntity {
     public EmployeeEntity() {
     }
 
-    public EmployeeEntity(Long id, String firstName, String lastName, Date birthDate, Role role, DepartmentEntity department, SalaryEntity salary, TitleEntity title, List<VacationEntity> vacations, String login, String password) {
+    public EmployeeEntity(Long id, String firstName, String lastName, Date birthDate, Role role, DepartmentEntity department, BigDecimal salary, String title, List<VacationEntity> vacations, String login, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -117,19 +114,19 @@ public class EmployeeEntity {
         this.department = department;
     }
 
-    public SalaryEntity getSalary() {
+    public BigDecimal getSalary() {
         return salary;
     }
 
-    public void setSalary(SalaryEntity salary) {
+    public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
 
-    public TitleEntity getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(TitleEntity title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 

@@ -22,12 +22,6 @@ public class EmployeesController {
     DepartmentRepository departmentRepository;
 
     @Autowired
-    TitleRepository titleRepository;
-
-    @Autowired
-    SalaryRepository salaryRepository;
-
-    @Autowired
     VacationsRepository vacationsRepository;
 
     @GetMapping("/info/{id}")
@@ -35,7 +29,7 @@ public class EmployeesController {
         return new Employee(employeesRepository.getOne(employeeId));
     }
 
-    @GetMapping("/department_info/{id}")
+    @GetMapping("/department/info/{id}")
     public List<Employee> getDepartmentInfo(@PathVariable(value = "id") Long departmentId) {
         DepartmentEntity departmentEntity = new DepartmentEntity();
         departmentEntity.setId(departmentId);
@@ -45,11 +39,10 @@ public class EmployeesController {
     @PostMapping("/info/update/{id}")
     public Employee updateEmployeeInfo(@Valid @RequestBody Employee employee) {
         DepartmentEntity departmentEntity = departmentRepository.getOne(employee.getDepartment().getId());
-        SalaryEntity salaryEntity = salaryRepository.getOne(employee.getSalary().getId());
-        TitleEntity titleEntity = titleRepository.getOne(employee.getTitle().getId());
         List<VacationEntity> vacations = vacationsRepository.findByEmployeeId(employee.getId());
+
         return new Employee(
-                employeesRepository.save(new EmployeeEntity(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getBirthDate(), employee.getRole(), departmentEntity, salaryEntity, titleEntity, vacations, employee.getLogin(), employee.getPassword()))
+                employeesRepository.save(new EmployeeEntity(employee.getId(), employee.getFirstName(), employee.getLastName(), employee.getBirthDate(), employee.getRole(), departmentEntity, employee.getSalary(), employee.getTitle(), vacations, employee.getLogin(), employee.getPassword()))
         );
     }
 }
