@@ -2,8 +2,8 @@ package com.training.test_project.beans.entity;
 
 import com.training.test_project.beans.Role;
 
+import java.util.Date;
 import javax.persistence.*;
-import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 

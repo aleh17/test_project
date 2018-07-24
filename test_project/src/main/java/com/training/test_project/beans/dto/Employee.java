@@ -3,10 +3,11 @@ package com.training.test_project.beans.dto;
 import com.training.test_project.beans.Role;
 import com.training.test_project.beans.entity.EmployeeEntity;
 
+import java.util.Date;
 import javax.validation.constraints.NotBlank;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 
 public class Employee {
 
@@ -18,18 +19,18 @@ public class Employee {
     @NotBlank
     private String lastName;
 
-    @NotBlank
+    @NotNull
     private Date birthDate;
 
     private Role role;
 
-    @NotBlank
+    @NotNull
     private Department department;
 
-    @NotBlank
+    @NotNull
     private Salary salary;
 
-    @NotBlank
+    @NotNull
     private Title title;
 
     private List<Vacation> vacations = new ArrayList<>();
@@ -49,6 +50,7 @@ public class Employee {
         this.lastName = employee.getLastName();
         this.birthDate = employee.getBirthDate();
         this.role = employee.getRole();
+        this.login = employee.getLogin();
         this.password = employee.getPassword();
         this.department = new Department(employee.getDepartment().getId(), employee.getDepartment().getDepartmentName());
         this.salary = new Salary(employee.getSalary().getId(), employee.getSalary().getSalary());
