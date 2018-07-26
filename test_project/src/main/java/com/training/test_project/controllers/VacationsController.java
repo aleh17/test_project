@@ -26,7 +26,7 @@ public class VacationsController {
     public Vacation requestVacation(@Valid @RequestBody Vacation vacation) {
         EmployeeEntity employee = employeesRepository.getOne(vacation.getEmployee().getId());
         return new Vacation(
-                vacationsRepository.save(new VacationEntity(vacation.getId(), employee, vacation.getFromDate(), vacation.getToDate(), vacation.getVacationStatus()))
+                vacationsRepository.save(new VacationEntity(vacation.getId(), employee, vacation.getFromDate(), vacation.getToDate(), VacationStatus.WAITING_FOR_APPROVAL))
         );
     }
 

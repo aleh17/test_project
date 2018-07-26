@@ -1,6 +1,5 @@
 package com.training.test_project.repository;
 
-import com.training.test_project.beans.dto.Employee;
 import com.training.test_project.beans.entity.DepartmentEntity;
 import com.training.test_project.beans.entity.EmployeeEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,5 +10,5 @@ import java.util.List;
 @Repository
 public interface EmployeesRepository extends JpaRepository<EmployeeEntity, Long> {
     List<EmployeeEntity> findByDepartment(DepartmentEntity department);
-    Employee findByLogin(String login);
+    EmployeeEntity findByLogin(String login);
 }
